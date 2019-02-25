@@ -37,13 +37,13 @@ You can use this client to connect a node app to VFK MSB.
 Install npm package
 
 ```sh
-npm install --save @vfk_research/vfk-msb-websocket-client:1.0.0
+npm install --save @vfk_research/msb-client-websocket:1.0.0
 ```
 
 Import to your applicaton
 
 ```js
-const MsbClient = require('@vfk_research/vfk-msb-websocket-client');
+const MsbClient = require('@vfk_research/msb-client-websocket');
 ```
 
 ## Create self-description

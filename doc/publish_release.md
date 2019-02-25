@@ -71,7 +71,7 @@ https://www.npmjs.com/package/@vfk_research/msb-client-websocket
 Publish the release with public access
 
 ```sh
-$ npm unpublish @vfk_research/vfk-msb-websocket-client:x.x.x
+$ npm unpublish @vfk_research/msb-client-websocket:x.x.x
 ```
 
 ## Test Project Linking Locally
