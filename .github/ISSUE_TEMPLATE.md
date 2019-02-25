@@ -1,4 +1,4 @@
-<!-- PULL REQUEST TEMPLATE -->
+<!-- ISSUE TEMPLATE -->
 <!-- Update "[ ]" to "[x]" to check a box -->
 
 <!--

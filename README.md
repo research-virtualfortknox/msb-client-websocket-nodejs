@@ -13,9 +13,11 @@
 
 ## Welcome
 
-If you want to contribute, please read the [Contribution Guidelines](.github/CONTRIBUTING.md)
+If you want to contribute, please read the [Contribution Guidelines](.github/CONTRIBUTING.md).
 
-If you want to know how to use this client, read below.
+If you want to test this client by using its sources and a sample app, read the [App Sample](doc/app_sample.md).
+
+If you want to know how to use this client in your own project, read below.
 
 ## Waht is VFK MSB
 

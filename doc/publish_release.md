@@ -64,7 +64,7 @@ $ npm publish --access public
 
 Login to npm and review the uploaded version:
 
-https://www.npmjs.com/package/@vfk_research/vfk-msb-websocket-client
+https://www.npmjs.com/package/@vfk_research/msb-client-websocket
 
 ### Step 2: Unpublish
 

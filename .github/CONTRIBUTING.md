@@ -198,7 +198,7 @@ $ TESTENV_CUSTOMIP=192.168.0.10 npm run test:integration
 
 TODO: Link to runing MSB test instances
 
-More information about testing and coverage reports: [Testing](/../../blob/master/LICENSE/doc/testing.md)
+More information about testing and coverage reports: [Testing](/../../blob/master/doc/testing.md)
 
 ### Step 8: Push
 
