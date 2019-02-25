@@ -16,7 +16,7 @@ Client version compatibility to MSB versions:
 
 | | **1.5.x-RELEASE** |
 |---|:---:|
-| 1.0.0       | x |
+| 1.0.x       | x |
 
 ## Welcome
 
@@ -40,7 +40,7 @@ You can use this client to connect a node app to VFK MSB.
 Install npm package
 
 ```sh
-npm install --save @vfk_research/msb-client-websocket-nodejs:1.0.0
+npm install --save @vfk_research/msb-client-websocket-nodejs:1.0.1
 ```
 
 Import to your applicaton
