@@ -12,6 +12,8 @@
 
 **Compatibility Matrix**
 
+Client version compatibility to MSB versions:
+
 | | **1.5.x-RELEASE** |
 |---|:---:|
 | 1.0.0       | x |
