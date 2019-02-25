@@ -88,8 +88,8 @@ to define the basic self description.
 
 ```js
 var type = 'SmartObject';
-var uuid = uuidv4();
-var name = 'SO ' + uuidv4();
+var uuid = uuidv4(); // you can type in an own uuid here instead of generating it
+var name = 'SO ' + uuid;
 var description = 'SO Desc' + uuidv4();
 var token = uuid.substring(0, 7);
 var myMsbClient = new MsbClient(
