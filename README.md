@@ -1,9 +1,13 @@
-<img src="https://research.virtualfortknox.de/static/cms/img/vfk_research_logo.png" alt="VFK Research Logo" height="70" >
 
-# NodeJS client library to websocket interface of VFK MSB
+<p align="center">
+  <a href="https://research.virtualfortknox.de" target="_blank" rel="noopener noreferrer">
+    <img src="https://research.virtualfortknox.de/static/cms/img/vfk_research_logo.png" alt="VFK Research Logo" height="70" >
+  </a>
+</p>
 
-* master
-* develop
+# MSB websocket client library for NodeJS
+
+[![Build Status](https://travis-ci.org/research-virtualfortknox/msb-client-websocket-nodejs.svg?branch=master)](https://travis-ci.org/research-virtualfortknox/msb-client-websocket-nodejs)
 
 **Compatibility Matrix**
 
