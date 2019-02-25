@@ -90,7 +90,7 @@ to define the basic self description.
 var type = 'SmartObject';
 var uuid = uuidv4(); // you can type in an own uuid here instead of generating it
 var name = 'SO ' + uuid;
-var description = 'SO Desc' + uuidv4();
+var description = 'SO Desc' + uuid;
 var token = uuid.substring(0, 7);
 var myMsbClient = new MsbClient(
     type,
