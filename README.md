@@ -12,9 +12,9 @@
 
 **Compatibility Matrix**
 
-| | **1.5.x-RELEASE** | **1.6.0-RELEASE** |
-|---|:---:|:---:|
-| 1.0.0       | x | x |
+| | **1.5.x-RELEASE** |
+|---|:---:|
+| 1.0.0       | x |
 
 ## Welcome
 
