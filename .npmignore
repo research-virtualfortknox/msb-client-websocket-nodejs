@@ -1,0 +1,14 @@
+.github/
+.git/
+.vscode/
+.nyc_output/
+coverage/
+test/
+doc/
+out/
+
+.eslintrc.json
+.gitignore
+.gitattributes
+.npmignore
+.travis.yml
