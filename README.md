@@ -8,6 +8,7 @@
 # MSB websocket client library for NodeJS
 
 [![Build Status](https://travis-ci.org/research-virtualfortknox/msb-client-websocket-nodejs.svg?branch=master)](https://travis-ci.org/research-virtualfortknox/msb-client-websocket-nodejs)
+[![npm version](https://badge.fury.io/js/%40vfk_research%2Fmsb-client-websocket-nodejs.svg)](https://badge.fury.io/js/%40vfk_research%2Fmsb-client-websocket-nodejs)
 
 **Compatibility Matrix**
 
