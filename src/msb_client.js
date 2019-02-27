@@ -19,6 +19,9 @@ const fs = require('fs');
 const Ajv = require('ajv');
 const uuidv4 = require('uuid/v4');
 
+// get the path to project root of the project requiring this node module
+const pathToProjectRoot = require('path');
+
 // ajv is used to validate specified dataformats of the msb client
 // array of unknown format names will be ignored
 const ajv = new Ajv({unknownFormats: ['float', 'double', 'int32', 'int64']});
@@ -54,7 +57,10 @@ let config = {
  */
 const getParamFromFile = function(paramName) {
   let paramValue, configArray;
-  if (fs.existsSync(__dirname + '/../application.properties')) {
+  if (fs.existsSync(pathToProjectRoot.dirname(require.main.filename) + '/application.properties')){
+    configArray = fs.readFileSync(pathToProjectRoot.dirname(require.main.filename)
+    + '/application.properties').toString().split(/\r?\n/);
+  } else if (fs.existsSync(__dirname + '/../application.properties')) {
     configArray = fs.readFileSync(__dirname + '/../application.properties').toString().split(/\r?\n/);
   } else if (fs.existsSync(__dirname + '/application.properties')) {
     configArray = fs.readFileSync(__dirname + '/application.properties').toString().split(/\r?\n/);
@@ -72,7 +78,9 @@ const getParamFromFile = function(paramName) {
 };
 
 // if the application.properties file is present if can be used to automatically initialize the client
-if (fs.existsSync(__dirname + '/../application.properties') || fs.existsSync(__dirname + '/application.properties')) {
+if (fs.existsSync(pathToProjectRoot.dirname(require.main.filename) + '/application.properties')
+  || fs.existsSync(__dirname + '/../application.properties')
+  || fs.existsSync(__dirname + '/application.properties')) {
   config.server = {};
   config.identity = {};
   config.settings = {};
@@ -138,6 +146,14 @@ const MsbClient = function(_serviceType, _uuid, _name, _description, _token) {
   }
 
   let my = this;
+
+  if (!config.identity.type || !config.identity.uuid || !config.identity.name
+      || !config.identity.description || !config.identity.token){
+    let err = 'Missing configurations! Please define msb client config (type, uuid, name, description, token) '
+      + 'either by constructor args of MsbClient or adding an application.properties file to project root.';
+    printDebug(my, err);
+    throw err;
+  }
 
   // init basic settings for the msb client
   initSettings(my);

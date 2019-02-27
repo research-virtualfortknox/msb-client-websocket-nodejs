@@ -40,7 +40,7 @@ You can use this client to connect a node app to VFK MSB.
 Install npm package
 
 ```sh
-npm install --save @vfk_research/msb-client-websocket-nodejs:1.0.1
+npm install --save @vfk_research/msb-client-websocket-nodejs:1.0.2
 ```
 
 Import to your applicaton
