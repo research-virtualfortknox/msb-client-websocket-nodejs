@@ -1,4 +1,3 @@
-
 /*
  * This class is a VFK MSB client library for Node.js, to connect to VFK MSB websocket interface.
  *
@@ -115,6 +114,7 @@ const MSBMessageTypes = [
   'NIO_UNAUTHORIZED_CONNECTION',
   'NIO_EVENT_FORWARDING_ERROR',
   'NIO_UNEXPECTED_EVENT_FORWARDING_ERROR',
+  'ping',
 ];
 
 /**
@@ -1303,6 +1303,24 @@ function connect(my) {
           // if reregistered successfully
           my.registered = true;
           checkEventCache(my);
+        } else if (data === 'ping') {
+          // handle ping-pong triggered by websocket interface
+          try {
+            if (my.sockJsFraming) {
+              my.socket.send('[pong]', function(error) {
+                if (error !== undefined)
+                  console.error('Async error:' + error);
+              });
+            } else {
+              my.socket.send('pong', function(error) {
+                if (error !== undefined)
+                  console.error('Async error:' + error);
+              });
+            }
+          } catch (e) {
+            console.error('Sync error: ' + e);
+            my.socket.close(1, e);
+          }
         }
       } else if (data.startsWith('C')) {
         // if data is not a MSB Message Type and starts with C
