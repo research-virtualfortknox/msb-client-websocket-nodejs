@@ -83,6 +83,9 @@ Requirements:
 Editor Suggestion:
 - [Visual Studio Code](https://code.visualstudio.com/)
 
+Alternatively we support the usage of [GitPod Cloud IDE](https://www.gitpod.io/). 
+Opening your fork in GitPod will automatically setup your development environment and you are ready to start.
+
 ## Development Lifecycle
 
 ### Step 1: Fork
