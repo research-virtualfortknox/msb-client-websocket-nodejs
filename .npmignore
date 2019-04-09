@@ -13,4 +13,5 @@ src/application.properties
 .gitignore
 .gitattributes
 .npmignore
+.gitpod.yml
 .travis.yml
