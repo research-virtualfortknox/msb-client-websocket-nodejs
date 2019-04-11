@@ -1307,7 +1307,7 @@ function connect(my) {
           // handle ping-pong triggered by websocket interface
           try {
             if (my.sockJsFraming) {
-              my.socket.send('[pong]', function(error) {
+              my.socket.send('["pong"]', function(error) {
                 if (error !== undefined)
                   console.error('Async error:' + error);
               });
