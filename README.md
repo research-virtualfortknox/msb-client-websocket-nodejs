@@ -26,7 +26,7 @@ If you want to test this client by using its sources and a sample app, read the 
 
 If you want to know how to use this client in your own project, read below.
 
-## Waht is VFK MSB
+## What is VFK MSB
 
 TODO: Link to general documentation about VFK MSB
 
@@ -51,14 +51,14 @@ const MsbClient = require('@vfk_research/msb-client-websocket-nodejs');
 
 ## Create self-description
 
-The figure below shows a minimal required `self-description model` of a smart object / application. 
-Every smart object / application requires (must have) a uuid and a token. 
-The uuid is competent for identification 
+The figure below shows a minimal required `self-description model` of a smart object / application.
+Every smart object / application requires (must have) a uuid and a token.
+The uuid is competent for identification
 and the token is used to verify the smart object / application for its owner on the MSB side.
 
 ![Self Description](doc/images/self-description.png)
 
-TODO: Here you can find more information about 
+TODO: Here you can find more information about
 the `self-description structure` and `supported data formats`.
 
 ### Alternative 1 - By application.properties
@@ -83,7 +83,7 @@ var myMsbClient = new MsbClient();
 
 ### Alternative 2 - By constructor
 
-If you do not provide an application.properties file, use the constructor 
+If you do not provide an application.properties file, use the constructor
 to define the basic self description.
 
 ```js
@@ -247,7 +247,7 @@ You will get an `IO_CONNECTED` and `IO_REGISTERED` event from MSB, if successful
 
 ## Event publishing
 
-For publishing an event to a websocket broker interface, 
+For publishing an event to a websocket broker interface,
 only the `eventId` and `data` are required of the already specified event (see above).
 
 ```js
@@ -255,14 +255,14 @@ var event_id = 'E1';
 var event_value = 'Hello World!';
 
 myMsbClient.publish(
-    event_id, 
+    event_id,
     event_value
 );
 ```
 
 The MSB responds with an `IO_PUBLISHED` event, if successful.
 
-By default events are published with a low priority. 
+By default events are published with a low priority.
 
 It is also possible to `set the priority` of an event.
 
@@ -280,7 +280,7 @@ var event_value = 'Hello World!';
 var event_priority = 2;
 
 myMsbClient.publish(
-    event_id, 
+    event_id,
     event_value,
     event_priority
 );
@@ -297,7 +297,7 @@ var event_priority = 2;
 var event_isCached = true;
 
 myMsbClient.publish(
-    event_id, 
+    event_id,
     event_value,
     event_priority,
     event_isCached
@@ -308,11 +308,11 @@ You can also pass a event object to the publish function in the format:
 
 ```js
 {
-    eventId: 'eventId', 
-    value: 'value', 
-    priority: 1, 
-    cached: true, 
-    postDate: new Date().toISOString(), 
+    eventId: 'eventId',
+    value: 'value',
+    priority: 1,
+    cached: true,
+    postDate: new Date().toISOString(),
     correlationId: correlationId
 }
 ```
@@ -327,11 +327,11 @@ var event_isCached = true;
 var event_correlationId = '72047f33-a9ae-4aa5-b7ae-c1c4a2797cac';
 
 myMsbClient.publish({
-    eventId: event_id, 
-    value: event_value, 
-    priority: event_priority, 
-    cahced: event_isCached, 
-    postDate: new Date().toISOString(), 
+    eventId: event_id,
+    value: event_value,
+    priority: event_priority,
+    cahced: event_isCached,
+    postDate: new Date().toISOString(),
     correlationId: event_correlationId
 });
 ```
@@ -343,7 +343,7 @@ var event_isCached = true;
 var event_correlationId = '72047f33-a9ae-4aa5-b7ae-c1c4a2797cac';
 
 myMsbClient.publish({
-    eventId: event_id, 
+    eventId: event_id,
     value: {
       deviceName: 'Dev001',
       deviceWeight: 62.22,
@@ -352,21 +352,21 @@ myMsbClient.publish({
         {moduleName: 'Module 2'},
       ],
     },
-    priority: event_priority, 
-    cahced: event_isCached, 
-    postDate: new Date().toISOString(), 
+    priority: event_priority,
+    cahced: event_isCached,
+    postDate: new Date().toISOString(),
     correlationId: event_correlationId
 });
 ```
 
 ## Function call handling
 
-As shown above the addFunction method includes a `function pointer` 
+As shown above the addFunction method includes a `function pointer`
 to point to the function implementation.
 
 ## Configuration parameters
 
-Configuration parameters are a simple list of key value pairs for the smart object / application. 
+Configuration parameters are a simple list of key value pairs for the smart object / application.
 It is displayed and can be customized in the MSB UI to change your apps behaviour during runtime.
 
 `Add` condifuration parameters:
@@ -401,7 +401,7 @@ var parameterValueFound_3 = myMsbClient.getConfigParameter(param_name_3);
 
 To enable `SSL/TLS`, you need to specify wss:// or https:// in the URL instead of ws:// or http://.
 
-Furthermore, it is necessary to specify a trust store in the client, 
+Furthermore, it is necessary to specify a trust store in the client,
 which contains the public certificate of the MSB interface, so that it is considered trustworthy.
 
 ```js
@@ -410,7 +410,7 @@ myMsbClient.connect(msb_url);
 myMsbClient.register();
 ```
 
-If you use an IP instead of a public url during development, 
+If you use an IP instead of a public url during development,
 it will be necessary to disable the hostname verification to connect via web socket secure.
 
 ```js
@@ -419,7 +419,7 @@ myMsbClient.disableHostnameVerification(true);
 
 ## Connection recovery
 
-If connection to the common websocket interface is broken the client performs a reconnect. 
+If connection to the common websocket interface is broken the client performs a reconnect.
 
 After a reconnect the registration at the MSB will be redone automatically by the client.
 
@@ -437,7 +437,7 @@ myMsbClient.disableAutoReconnect(true);
 
 ## Event caching
 
-If the client loses the connection, the published events are cached in a queue. 
+If the client loses the connection, the published events are cached in a queue.
 
 After a successfull reconnection, the queued events are published to MSB (FIFO principle).
 The default size of the queue is 1000 entries. The size can be changed:
@@ -470,7 +470,7 @@ myMsbClient.enableDataFormatValidation(true);
 
 ### 'undefined' error for config values from application.properties
 
-If you get an "undefined" error for the config values from the application properties on Windows 7, 
+If you get an "undefined" error for the config values from the application properties on Windows 7,
 change the line endings of the application.properties file from LF (Linux) to CRLF (Windows).
 
 Windows 10 should be able to handle both.
