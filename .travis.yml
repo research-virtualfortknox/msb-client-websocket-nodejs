@@ -4,9 +4,10 @@ node_js:
   - "8"
 
 env:
-  - TESTENV_BROKER_URL=https://ws.15xr.msb.oss.cell.vfk.fraunhofer.de/
-  - TESTENV_SO_URL=https://so.15xr.msb.oss.cell.vfk.fraunhofer.de/
-  - TESTENV_FLOW_URL=https://flow.15xr.msb.oss.cell.vfk.fraunhofer.de/
+  global:
+    - TESTENV_BROKER_URL=https://ws.15xr.msb.oss.cell.vfk.fraunhofer.de/
+    - TESTENV_SO_URL=https://so.15xr.msb.oss.cell.vfk.fraunhofer.de/
+    - TESTENV_FLOW_URL=https://flow.15xr.msb.oss.cell.vfk.fraunhofer.de/
 
 cache: npm
 
