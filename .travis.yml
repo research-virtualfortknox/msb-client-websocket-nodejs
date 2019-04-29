@@ -3,9 +3,16 @@ language: node_js
 node_js:
   - "8"
 
+env:
+  - TESTENV_BROKER_URL=https://ws.15xr.msb.oss.cell.vfk.fraunhofer.de/
+  - TESTENV_SO_URL=https://so.15xr.msb.oss.cell.vfk.fraunhofer.de/
+  - TESTENV_FLOW_URL=https://flow.15xr.msb.oss.cell.vfk.fraunhofer.de/
+
 cache: npm
 
-# npm test is executed here by default
+# npm test is executed here by default, change it here:
+script:
+  - npm run test:all
 
 deploy:
   provider: npm # deploys to npmjs repo
