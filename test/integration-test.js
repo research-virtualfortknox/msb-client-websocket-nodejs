@@ -49,6 +49,18 @@ if (process.env.TESTENV_CUSTOMIP !== undefined) {
   flow_url = flow_url.replace(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i, '://' + testEnvCustomIp);
   broker_url = broker_url.replace(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i, '://' + testEnvCustomIp);
 }
+if(process.env.TESTENV_BROKER_URL !== undefined) {
+  broker_url = process.env.TESTENV_BROKER_URL;
+  console.log('Test Env Broker Url: ' + broker_url);
+}
+if(process.env.TESTENV_SO_URL !== undefined) {
+  so_url = process.env.TESTENV_SO_URL;
+  console.log('Test Env SO Url: ' + so_url);
+}
+if(process.env.TESTENV_FLOW_URL !== undefined) {
+  flow_url = process.env.TESTENV_FLOW_URL;
+  console.log('Test Env Flow Url: ' + flow_url);
+}
 
 console.log('SmartObjectMgmt URL: ' + so_url);
 console.log('IntegrationDesignMgmt URL: ' + flow_url);
