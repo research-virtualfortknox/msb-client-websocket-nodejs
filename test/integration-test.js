@@ -806,8 +806,11 @@ describe('Integration Test - Basic Communication With MSB (heartbeat)', function
  */
 let getVerificationToken = function(ownerUuid, msbClient) {
   return new Promise(function(resolve, reject) {
-    let path = so_url + '/service/token/' + ownerUuid;
-    restclient.get(path, function(data, response) {
+    let path = so_url + '/token/' + ownerUuid;
+    let args = {
+      headers: {'Content-Type': 'application/json'},
+    };
+    restclient.post(path, args, function(data, response) {
       try {
         expect(data).to.include.keys('token');
       } catch (err) {
