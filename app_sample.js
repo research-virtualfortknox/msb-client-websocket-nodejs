@@ -27,8 +27,7 @@ var myMsbClient = new MsbClient();
 
 // var msb_url = 'wss://localhost:8084';
 // var msb_url = 'ws://localhost:8085';
-var msb_url = 'ws://ws.msb.edu.virtualfortknox.de';
-// var msb_url = 'ws://ws2.msb.edu.virtualfortknox.de';
+var msb_url = 'ws://ws2.msb.edu.virtualfortknox.de';
 
 // enable debug log messages (default = false).
 myMsbClient.enableDebug(true);
