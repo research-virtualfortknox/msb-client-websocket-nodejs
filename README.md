@@ -46,7 +46,7 @@ npm install --save @vfk_research/msb-client-websocket-nodejs:1.0.5
 Import to your applicaton
 
 ```js
-const MsbClient = require('@vfk_research/msb-client-websocket-nodejs');
+var MsbClient = require('@vfk_research/msb-client-websocket-nodejs');
 ```
 
 ## Create self-description
