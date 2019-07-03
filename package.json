@@ -16,7 +16,8 @@
     "lodash": "^4.17.11",
     "ws": "^6.1.4",
     "uuid": "^3.3.2",
-    "ajv": "^5.2.2"
+    "ajv": "^5.2.2",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -37,7 +38,9 @@
     "coverage:unit": "nyc --reporter=text --check-coverage --lines 60 --per-file mocha test/test.js",
     "coverage:integration": "nyc --reporter=text --check-coverage --lines 60 --per-file mocha test/integration-test.js",
     "coverage:all": "nyc --reporter=text --check-coverage --lines 85 --per-file mocha",
-    "jsdoc": "./node_modules/.bin/jsdoc src/msb_client.js"
+    "jsdoc": "./node_modules/.bin/jsdoc src/msb_client.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -62,5 +65,6 @@
   },
   "bugs": {
     "url": "https://github.com/research-virtualfortknox/msb-client-websocket-nodejs/issues"
-  }
+  },
+  "snyk": true
 }
