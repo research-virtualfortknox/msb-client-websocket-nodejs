@@ -1,4 +1,3 @@
-
 <p align="center">
   <a href="https://research.virtualfortknox.de" target="_blank" rel="noopener noreferrer">
     <img src="https://research.virtualfortknox.de/static/cms/img/vfk_research_logo.png" alt="VFK Research Logo" height="70" >
@@ -9,6 +8,7 @@
 
 [![Build Status](https://travis-ci.org/research-virtualfortknox/msb-client-websocket-nodejs.svg?branch=master)](https://travis-ci.org/research-virtualfortknox/msb-client-websocket-nodejs)
 [![npm version](https://badge.fury.io/js/%40vfk_research%2Fmsb-client-websocket-nodejs.svg)](https://badge.fury.io/js/%40vfk_research%2Fmsb-client-websocket-nodejs)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fresearch-virtualfortknox%2Fmsb-client-websocket-nodejs.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fresearch-virtualfortknox%2Fmsb-client-websocket-nodejs?ref=badge_shield)
 
 **Compatibility Matrix**
 
@@ -474,3 +474,7 @@ If you get an "undefined" error for the config values from the application prope
 change the line endings of the application.properties file from LF (Linux) to CRLF (Windows).
 
 Windows 10 should be able to handle both.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fresearch-virtualfortknox%2Fmsb-client-websocket-nodejs.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fresearch-virtualfortknox%2Fmsb-client-websocket-nodejs?ref=badge_large)
