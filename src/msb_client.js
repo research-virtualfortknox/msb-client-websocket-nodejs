@@ -56,8 +56,8 @@ let config = {
  */
 const getParamFromFile = function(paramName) {
   let paramValue, configArray;
-  if (fs.existsSync(pathToProjectRoot.dirname(require.main.filename) + '/application.properties')){
-    configArray = fs.readFileSync(pathToProjectRoot.dirname(require.main.filename)
+  if (fs.existsSync(pathToProjectRoot.dirname(require.main.filename || '.') + '/application.properties')){
+    configArray = fs.readFileSync(pathToProjectRoot.dirname(require.main.filename || '.')
     + '/application.properties').toString().split(/\r?\n/);
   } else if (fs.existsSync(__dirname + '/../application.properties')) {
     configArray = fs.readFileSync(__dirname + '/../application.properties').toString().split(/\r?\n/);
@@ -77,7 +77,7 @@ const getParamFromFile = function(paramName) {
 };
 
 // if the application.properties file is present if can be used to automatically initialize the client
-if (fs.existsSync(pathToProjectRoot.dirname(require.main.filename) + '/application.properties')
+if (fs.existsSync(pathToProjectRoot.dirname(require.main.filename || '.') + '/application.properties')
   || fs.existsSync(__dirname + '/../application.properties')
   || fs.existsSync(__dirname + '/application.properties')) {
   config.server = {};
