@@ -691,7 +691,7 @@ function validateFunctionDataFormatSpecification(functionObject) {
   if (functionObject.dataFormat === undefined) {
     return true;
   }
-  let schema = require('./function_schema.json')
+  let schema = require('./function_schema.json');
   let validate = ajv.compile(schema);
   let valid = validate({definitions: functionObject.dataFormat});
   if (!valid) {
@@ -781,7 +781,7 @@ function validateEventDataFormatSpecification(eventObject) {
     return true;
   }
   // load json schema
-  let schema = require('./event_schema.json')
+  let schema = require('./event_schema.json');
   // use ajv to compile schema and validate dataformat
   let validate = ajv.compile(schema);
   let valid = validate({definitions: eventObject.dataFormat});
