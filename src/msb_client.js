@@ -1328,7 +1328,6 @@ function connect(my) {
         let msg;
         try {
           msg = JSON.parse(data.slice(2).replace(/\\"/g, '"'));
-          msg['functionParameters'].correlationId = msg.correlationId;
         } catch (err) {
           console.info('Double-stringified JSON string detected... Removing quote escapes. '
           + 'Make sure not to map complex objects to strings.');
@@ -1336,7 +1335,11 @@ function connect(my) {
           msg = msg.replace(/\\"/g, '"');
           msg = msg.replace(/\":\"{\"/g, '\":{\"');
           msg = JSON.parse(msg.replace(/}\"}}/g, '}}}'));
+        }
+        try {
           msg['functionParameters'].correlationId = msg.correlationId;
+        } catch (err) {
+          printDebug(my, 'correlationid could not be found. Does the websocket interface version support it?');
         }
         printDebug(my, 'received message from MSB: ' + msg);
         // forward function parameters of message to dedicated function implementation
