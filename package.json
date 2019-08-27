@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "eslint": "^5.16.0",
+    "eslint": "^6.2.2",
     "eslint-config-strongloop": "^2.1.0",
     "jsdoc": "^3.6.2",
     "mocha": "^5.2.0",
