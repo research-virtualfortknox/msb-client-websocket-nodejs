@@ -66,13 +66,15 @@ Login to npm and review the uploaded version:
 
 https://www.npmjs.com/package/@vfk_research/msb-client-websocket-nodejs
 
-### Step 2: Unpublish
+### Step 4: Unpublish
 
-Publish the release with public access
+Unpublish the release with public access
 
 ```sh
 $ npm unpublish @vfk_research/msb-client-websocket-nodejs:x.x.x
 ```
+
+Note that an unpublished release version cannot be reused.
 
 ## Test Project Linking Locally
 
