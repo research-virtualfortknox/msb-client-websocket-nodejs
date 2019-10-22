@@ -193,7 +193,7 @@ describe('Integration Test - Basic Communication With MSB', function() {
       done(err);
     });
 
-  }).timeout(5000);
+  }).timeout(8000);
 
   it('should change configuration parameters via websocket interface', function() {
 
