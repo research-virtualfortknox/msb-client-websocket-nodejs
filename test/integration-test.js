@@ -846,7 +846,7 @@ let connectAndRegisterClient = function(msbClient) {
     msbClient.register();
     setTimeout(function() {
       resolve();
-    }, 2000); // wait in ms before continue with asserts
+    }, 5000); // wait in ms before continue with asserts
   });
 };
 
