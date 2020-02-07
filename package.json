@@ -15,7 +15,7 @@
   "dependencies": {
     "lodash": ">=4.17.13",
     "ws": "^6.1.4",
-    "uuid": "^3.3.2",
+    "uuid": "^3.4.0",
     "ajv": "^5.2.2"
   },
   "devDependencies": {
