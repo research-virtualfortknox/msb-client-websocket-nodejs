@@ -15,6 +15,9 @@ cache: npm
 script:
   - npm run test:all
 
+after_success:
+  - npm run coverage:coveralls
+
 deploy:
   provider: npm # deploys to npmjs repo
   email: # travis secure - to be updated per travis repo
