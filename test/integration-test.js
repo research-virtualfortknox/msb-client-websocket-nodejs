@@ -809,7 +809,7 @@ let getVerificationToken = function(ownerUuid, msbClient) {
     chai.request(so_url)
       .post('/token/' + ownerUuid)
       .set('content-type', 'application/json')
-      .end(function (err, res) {
+      .end(function(err, res) {
         expect(err).to.be.null;
         expect(res, 'Response does not have expected status code').to.have.status(201);
         try {
@@ -833,7 +833,7 @@ let getVerificationToken = function(ownerUuid, msbClient) {
         var config = msbClient.getConfig();
         config.identity.token = res.body.token;
         resolve(res.body.token);
-    });
+      });
   });
 };
 
@@ -874,7 +874,7 @@ let createFlow = function(flowstring) {
       .post('/integrationFlow/create')
       .set('content-type', 'application/json')
       .send(flowstring)
-      .end(function (err, res) {
+      .end(function(err, res) {
         try {
           expect(err).to.be.null;
           expect(res, 'Response does not have expected status code').to.have.status(201);
@@ -885,7 +885,7 @@ let createFlow = function(flowstring) {
           reject(err);
         }
         resolve(res.body.id);
-    });
+      });
   });
 };
 
@@ -898,7 +898,7 @@ let getFlow = function(flowId, deleted = false) {
     chai.request(flow_url)
       .get('/integrationFlow/' + flowId)
       .set('content-type', 'application/json')
-      .end(function (err, res) {
+      .end(function(err, res) {
         try {
           expect(err).to.be.null;
           console.debug('Get integration flow - data: ' + util.inspect(res.body, {showHidden: false, depth: null}));
@@ -912,7 +912,7 @@ let getFlow = function(flowId, deleted = false) {
           reject(err);
         }
         resolve(res.body);
-    });
+      });
   });
 };
 
@@ -925,7 +925,7 @@ let deployFlow = function(flowId) {
     chai.request(flow_url)
       .put('/integrationFlow/' + flowId + '/deploy')
       .set('content-type', 'application/json')
-      .end(function (err, res) {
+      .end(function(err, res) {
         try {
           expect(err).to.be.null;
           expect(res, 'Response does not have expected status code').to.have.status(200);
@@ -934,7 +934,7 @@ let deployFlow = function(flowId) {
           reject(err);
         }
         resolve(flowId);
-    });
+      });
   });
 };
 
@@ -947,7 +947,7 @@ let undeployFlow = function(flowId) {
     chai.request(flow_url)
       .put('/integrationFlow/' + flowId + '/undeploy')
       .set('content-type', 'application/json')
-      .end(function (err, res) {
+      .end(function(err, res) {
         try {
           expect(err).to.be.null;
           expect(res, 'Response does not have expected status code').to.have.status(200);
@@ -956,7 +956,7 @@ let undeployFlow = function(flowId) {
           reject(err);
         }
         resolve(flowId);
-    });
+      });
   });
 };
 
@@ -968,7 +968,7 @@ let deleteFlow = function(flowId) {
   return new Promise(function(resolve, reject) {
     chai.request(flow_url)
       .delete('/integrationFlow/' + flowId)
-      .end(function (err, res) {
+      .end(function(err, res) {
         try {
           expect(err).to.be.null;
           expect(res, 'Response does not have expected status code').to.have.status(200);
@@ -977,7 +977,7 @@ let deleteFlow = function(flowId) {
           reject(err);
         }
         resolve();
-    });
+      });
   });
 };
 
@@ -990,7 +990,7 @@ let getSmartObject = function(soUUid, deleted = false) {
     chai.request(so_url)
       .get('/smartobject/' + soUUid)
       .set('content-type', 'application/json')
-      .end(function (err, res) {
+      .end(function(err, res) {
         try {
           expect(err).to.be.null;
           console.debug('Get smart object - data: ' + util.inspect(res.body, {showHidden: false, depth: null}));
@@ -1004,7 +1004,7 @@ let getSmartObject = function(soUUid, deleted = false) {
           reject(err);
         }
         resolve(res.body);
-    });
+      });
   });
 };
 
@@ -1016,7 +1016,7 @@ let deleteSmartObject = function(soUuid) {
   return new Promise(function(resolve, reject) {
     chai.request(so_url)
       .delete('/smartobject/' + soUuid)
-      .end(function (err, res) {
+      .end(function(err, res) {
         try {
           expect(err).to.be.null;
           expect(res, 'Response does not have expected status code').to.have.status(200);
@@ -1025,7 +1025,7 @@ let deleteSmartObject = function(soUuid) {
           reject(err);
         }
         resolve();
-    });
+      });
   });
 };
 
