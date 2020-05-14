@@ -1,19 +1,19 @@
 /* eslint-env mocha */
 'use strict';
 
-var expect = require('chai').expect;
+var chai = require('chai');
+var chaiHttp = require('chai-http');
+chai.use(chaiHttp);
+var expect = chai.expect;
 const MsbClient = require('../src/msb_client');
 const uuidv4 = require('uuid/v4');
 let fs = require('fs');
 const util = require('util');
-let Client = require('node-rest-client').Client;
 
 
 /** ************** Peparation */
 
 const ownerUuid = '7c328ad1-cea5-410e-8dd8-6c7ca5a2e4f5';
-// main clients
-const restclient = new Client();
 // vars to check test connection states (updated by emitter)
 let test_connected;
 let test_registered;
@@ -404,7 +404,7 @@ describe('Integration Test - Basic Communication With MSB', function() {
 
     // 3. ASSERT
     createFlow(myFlow).then(function(flowId){
-      expect(flowId, 'Could not get flow id when creating new flow').not.to.be.empty;
+      expect(flowId, 'Could not get flow id when creating new flow').not.to.be.undefined;
       expect(flowId, 'Flow id is not an integer value').to.be.a('number');
       myFlowId = flowId;
       // check if flow was created
@@ -806,32 +806,33 @@ describe('Integration Test - Basic Communication With MSB (heartbeat)', function
  */
 let getVerificationToken = function(ownerUuid, msbClient) {
   return new Promise(function(resolve, reject) {
-    let path = so_url + '/token/' + ownerUuid;
-    let args = {
-      headers: {'Content-Type': 'application/json'},
-    };
-    restclient.post(path, args, function(data, response) {
-      try {
-        expect(data).to.include.keys('token');
-      } catch (err) {
-        console.error("Response doesn't contain token key: " + err);
-        reject(err);
-      }
-      try {
-        expect(data.token).to.not.be.an('undefined');
-      } catch (err) {
-        console.error('Token is undefined: ' + err);
-        reject(err);
-      }
-      try {
-        expect(data.token).to.be.a('string');
-      } catch (err) {
-        console.error("Token isn't a string: " + err);
-        reject(err);
-      }
-      var config = msbClient.getConfig();
-      config.identity.token = data.token;
-      resolve(data.token);
+    chai.request(so_url)
+      .post('/token/' + ownerUuid)
+      .set('content-type', 'application/json')
+      .end(function (err, res) {
+        expect(err).to.be.null;
+        expect(res, 'Response does not have expected status code').to.have.status(201);
+        try {
+          expect(res.body).to.include.keys('token');
+        } catch (err) {
+          console.error("Response doesn't contain token key: " + err);
+          reject(err);
+        }
+        try {
+          expect(res.body.token).to.not.be.an('undefined');
+        } catch (err) {
+          console.error('Token is undefined: ' + err);
+          reject(err);
+        }
+        try {
+          expect(res.body.token).to.be.a('string');
+        } catch (err) {
+          console.error("Token isn't a string: " + err);
+          reject(err);
+        }
+        var config = msbClient.getConfig();
+        config.identity.token = res.body.token;
+        resolve(res.body.token);
     });
   });
 };
@@ -869,20 +870,21 @@ let disconnectClient = function(msbClient) {
  */
 let createFlow = function(flowstring) {
   return new Promise(function(resolve, reject) {
-    let args = {
-      data: flowstring,
-      headers: {'Content-Type': 'application/json'},
-    };
-    restclient.post(flow_url + '/integrationFlow/create', args, function(data, response) {
-      try {
-        console.debug('Create integration flow - status code: ' + response.statusCode);
-        console.debug('Create integration flow - flow_id: ' + data.id);
-        expect(response.statusCode, 'Response does not have expected status code').to.equal(201);
-      } catch (err) {
-        console.error('Error creating integration flow: ' + err);
-        reject(err);
-      }
-      resolve(data.id);
+    chai.request(flow_url)
+      .post('/integrationFlow/create')
+      .set('content-type', 'application/json')
+      .send(flowstring)
+      .end(function (err, res) {
+        try {
+          expect(err).to.be.null;
+          expect(res, 'Response does not have expected status code').to.have.status(201);
+          expect(res.body).to.include.keys('id');
+          console.debug('Create integration flow - flow_id: ' + res.body.id);
+        } catch (err) {
+          console.error('Error creating integration flow: ' + err);
+          reject(err);
+        }
+        resolve(res.body.id);
     });
   });
 };
@@ -893,24 +895,23 @@ let createFlow = function(flowstring) {
  */
 let getFlow = function(flowId, deleted = false) {
   return new Promise(function(resolve, reject) {
-    let args = {
-      data: {},
-      headers: {'Content-Type': 'application/json'},
-    };
-    restclient.get(flow_url + '/integrationFlow/' + flowId, args, function(data, response) {
-      try {
-        console.debug('Get integration flow - status code: ' + response.statusCode);
-        console.debug('Get integration flow - data: ' + util.inspect(data, {showHidden: false, depth: null}));
-        if (deleted){
-          expect(response.statusCode, 'Response does not have expected status code').to.equal(404);
-        } else {
-          expect(response.statusCode, 'Response does not have expected status code').to.equal(200);
+    chai.request(flow_url)
+      .get('/integrationFlow/' + flowId)
+      .set('content-type', 'application/json')
+      .end(function (err, res) {
+        try {
+          expect(err).to.be.null;
+          console.debug('Get integration flow - data: ' + util.inspect(res.body, {showHidden: false, depth: null}));
+          if (deleted){
+            expect(res, 'Response does not have expected status code').to.have.status(404);
+          } else {
+            expect(res, 'Response does not have expected status code').to.have.status(200);
+          }
+        } catch (err) {
+          console.error('Error getting integration flow: ' + err);
+          reject(err);
         }
-      } catch (err) {
-        console.error('Error getting integration flow: ' + err);
-        reject(err);
-      }
-      resolve(data);
+        resolve(res.body);
     });
   });
 };
@@ -921,19 +922,18 @@ let getFlow = function(flowId, deleted = false) {
  */
 let deployFlow = function(flowId) {
   return new Promise(function(resolve, reject) {
-    let args = {
-      data: {},
-      headers: {'Content-Type': 'application/json'},
-    };
-    restclient.put(flow_url + '/integrationFlow/' + flowId + '/deploy', args, function(data, response) {
-      try {
-        console.debug('Deploy integration flow - status code: ' + response.statusCode);
-        expect(response.statusCode, 'Response does not have expected status code').to.equal(200);
-      } catch (err) {
-        console.error('Error deploying integration flow: ' + err);
-        reject(err);
-      }
-      resolve(flowId);
+    chai.request(flow_url)
+      .put('/integrationFlow/' + flowId + '/deploy')
+      .set('content-type', 'application/json')
+      .end(function (err, res) {
+        try {
+          expect(err).to.be.null;
+          expect(res, 'Response does not have expected status code').to.have.status(200);
+        } catch (err) {
+          console.error('Error deploying integration flow: ' + err);
+          reject(err);
+        }
+        resolve(flowId);
     });
   });
 };
@@ -944,19 +944,18 @@ let deployFlow = function(flowId) {
  */
 let undeployFlow = function(flowId) {
   return new Promise(function(resolve, reject) {
-    let args = {
-      data: {},
-      headers: {'Content-Type': 'application/json'},
-    };
-    restclient.put(flow_url + '/integrationFlow/' + flowId + '/undeploy', args, function(data, response) {
-      try {
-        console.debug('Undeploy integration flow - status code: ' + response.statusCode);
-        expect(response.statusCode, 'Response does not have expected status code').to.equal(200);
-      } catch (err) {
-        console.error('Error undeploying integration flow: ' + err);
-        reject(err);
-      }
-      resolve(flowId);
+    chai.request(flow_url)
+      .put('/integrationFlow/' + flowId + '/undeploy')
+      .set('content-type', 'application/json')
+      .end(function (err, res) {
+        try {
+          expect(err).to.be.null;
+          expect(res, 'Response does not have expected status code').to.have.status(200);
+        } catch (err) {
+          console.error('Error undeploying integration flow: ' + err);
+          reject(err);
+        }
+        resolve(flowId);
     });
   });
 };
@@ -967,15 +966,17 @@ let undeployFlow = function(flowId) {
  */
 let deleteFlow = function(flowId) {
   return new Promise(function(resolve, reject) {
-    restclient.delete(flow_url + '/integrationFlow/' + flowId, function(data, response) {
-      try {
-        console.debug('Delete integration flow - status code: ' + response.statusCode);
-        expect(response.statusCode, 'Response does not have expected status code').to.equal(200);
-      } catch (err) {
-        console.log('Error deleting integration flow: ' + err);
-        reject(err);
-      }
-      resolve();
+    chai.request(flow_url)
+      .delete('/integrationFlow/' + flowId)
+      .end(function (err, res) {
+        try {
+          expect(err).to.be.null;
+          expect(res, 'Response does not have expected status code').to.have.status(200);
+        } catch (err) {
+          console.log('Error deleting integration flow: ' + err);
+          reject(err);
+        }
+        resolve();
     });
   });
 };
@@ -986,24 +987,23 @@ let deleteFlow = function(flowId) {
  */
 let getSmartObject = function(soUUid, deleted = false) {
   return new Promise(function(resolve, reject) {
-    let args = {
-      data: {},
-      headers: {'Content-Type': 'application/json'},
-    };
-    restclient.get(so_url + '/smartobject/' + soUUid, args, function(data, response) {
-      try {
-        console.debug('Get smart object - status code: ' + response.statusCode);
-        console.debug('Get smart object - data: ' + util.inspect(data, {showHidden: false, depth: null}));
-        if (deleted){
-          expect(response.statusCode, 'Response does not have expected status code').to.equal(404);
-        } else {
-          expect(response.statusCode, 'Response does not have expected status code').to.equal(200);
+    chai.request(so_url)
+      .get('/smartobject/' + soUUid)
+      .set('content-type', 'application/json')
+      .end(function (err, res) {
+        try {
+          expect(err).to.be.null;
+          console.debug('Get smart object - data: ' + util.inspect(res.body, {showHidden: false, depth: null}));
+          if (deleted){
+            expect(res, 'Response does not have expected status code').to.have.status(404);
+          } else {
+            expect(res, 'Response does not have expected status code').to.have.status(200);
+          }
+        } catch (err) {
+          console.error('Error getting smart object: ' + err);
+          reject(err);
         }
-      } catch (err) {
-        console.error('Error getting smart object: ' + err);
-        reject(err);
-      }
-      resolve(data);
+        resolve(res.body);
     });
   });
 };
@@ -1014,15 +1014,17 @@ let getSmartObject = function(soUUid, deleted = false) {
  */
 let deleteSmartObject = function(soUuid) {
   return new Promise(function(resolve, reject) {
-    restclient.delete(so_url + '/smartobject/' + soUuid, function(data, response) {
-      try {
-        console.debug('Delete smart object - status code: ' + response.statusCode);
-        expect(response.statusCode, 'Response does not have expected status code').to.equal(200);
-      } catch (err) {
-        console.log('Error deleting smart object: ' + err);
-        reject(err);
-      }
-      resolve();
+    chai.request(so_url)
+      .delete('/smartobject/' + soUuid)
+      .end(function (err, res) {
+        try {
+          expect(err).to.be.null;
+          expect(res, 'Response does not have expected status code').to.have.status(200);
+        } catch (err) {
+          console.log('Error deleting smart object: ' + err);
+          reject(err);
+        }
+        resolve();
     });
   });
 };
