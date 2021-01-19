@@ -3,11 +3,10 @@ language: node_js
 node_js:
   - "8"
 
+# build matrix with envs for different MSB versions
 env:
-  global:
-    - TESTENV_BROKER_URL=https://ws.15xr.msb.oss.cell.vfk.fraunhofer.de/
-    - TESTENV_SO_URL=https://so.15xr.msb.oss.cell.vfk.fraunhofer.de/
-    - TESTENV_FLOW_URL=https://flow.15xr.msb.oss.cell.vfk.fraunhofer.de/
+  - TESTENV_BROKER_URL=https://ws.15xr.msb.oss.cell.vfk.fraunhofer.de/ TESTENV_SO_URL=https://so.15xr.msb.oss.cell.vfk.fraunhofer.de/ TESTENV_FLOW_URL=https://flow.15xr.msb.oss.cell.vfk.fraunhofer.de/
+  - DEPLOY_MSB_CLIENT_LIB=yes TESTENV_BROKER_URL=https://ws.16xr.msb.oss.cell.vfk.fraunhofer.de/ TESTENV_SO_URL=https://so.16xr.msb.oss.cell.vfk.fraunhofer.de/ TESTENV_FLOW_URL=https://flow.16xr.msb.oss.cell.vfk.fraunhofer.de/
 
 cache: npm
 
@@ -20,10 +19,9 @@ after_success:
 
 deploy:
   provider: npm # deploys to npmjs repo
-  email: # travis secure - to be updated per travis repo
-    secure: nUlJFUlYaOmaoC/vBSeM967LsfGuYXrlrLWrNiT9Giu6CjA8x1bHnpguPAhVqQlMDJtzUS4rfEFwNQG58/EdPP5/LxZh1gSWNV5hClMFOH8JHnFpWqugpD2+gIUreS5BhJuDVXyFA+669aBnUnfT3yyQ9EG16weSdUBboH0k4qcQTtdXG/pL7JsSughPDimwyLijKBqx3HAGrQzcazlBZEN4OF8fwH5Bq6HRvZRqqltLcfcJi4H+k6dpUkraa5AC+9DrCkHbyChx7qj3hcUlciPl3RbmKXv4VurgsUEvMIKOkLPtyS9IUonPTzsjtTm91BAOjSPn1nGBRyHgFqXTQQlxE70hF1dUp+BTVWUWnjJ6SynAd7TyWOGb6rEp1BYSXLqZr8nb2G7Je8wV8WVF67eFCssWlxaJ3G36B17z+V2xjmzIn2y3iQw2mcD8f65sZRleQADqBE5fSKtAZs5fZbYtm/4TYzj5Gg8TDNNYv7PHLFOTBElEWrfVafdy3pqblDCvb5Ijv4EuCuMwwo+cH5ZsB+zwCOnQTHVKcWukCyMdiDflgngnnajh+ltY1dYoDwM50Ut0Mt/yzFEIQEbr9yhKyWHG0qHK626YnFDy1CyXP2m3GV1BbTKYvZCTclxcVx0X78ylFuy4c1nQI73LGXXuC8Qf6UhP/BcsnZYjNlU=
-  api_key: # travis secure - to be updated per travis repo
-    secure: gKxsJNA57Y54C5BWMPXGwtafJejkWvR/V02N5CnB3qyxdgueXfPMry4tH3zUpIUxVkOfYrwnEM05vvdpz71YZT8GKfXJd2T/u8YBiZGEDlW5jkBtfE/TLCR63NHkg4LqML7ubhZwN2kv/b4zvGcSNHOXpxXYR5YiFgATUT1705fCN1Ks1V8v64+Bqz6bp6p6DoMMa478+f1/BWR1zQdHILvnLVlwV1QSz/ZIKy/vm1BTMQoZItGRn27r/qd0yT5TzNaxAhY6UWtklVdJB5aP2ou7iSI9bKL65d2j6jVjym/rUWKDaBw2KptJEdxU2qxt6uj4TwGXYtkhfU8na5FlnmXn3EyLFLXyMwVCEXW6Io9wySjOdmS7+KN2G7jPQdbWNdaX75DwyLxubbBdqrL2hZTEZC76ZxFxy5mJk+z0o3kih1AemV6TjJs7pmOk+elVf088+VTPCpu0CjwZQzelcnRDe4u3a5MfHLknsqYhQ1wjBhHzthSMvMnRHl3fSC1tvE70IRuKMB/oOEaHVE4hQcgv16Oq7n+PEflTKLYRWEGTKCdkrbGY9qTOsQOBzW/1qaeEgtfXPBdlL2cO2ZoKqcBGO0vrOlXO7KbttGsGtsbT/maUJc3u1l3CmbeHyD4qKQjFSeROLpPnSLY2ScwgpGVHmi3snnNpmCd8M9rinw8=
+  email: $NPMJS_EMAIL
+  api_key: $NPMJS_PASSWORD
   on:
     tags: true # only deploys if a git TAG exists for the commit
+    condition: $DEPLOY_MSB_CLIENT_LIB = yes # only deploys if condition true
     # branch: master # only deploys if branch is master
