@@ -13,7 +13,7 @@ const util = require('util');
 
 /** ************** Peparation */
 
-const ownerUuid = '7c328ad1-cea5-410e-8dd8-6c7ca5a2e4f5';
+let ownerUuid = '7c328ad1-cea5-410e-8dd8-6c7ca5a2e4f5';
 // vars to check test connection states (updated by emitter)
 let test_connected;
 let test_registered;
@@ -61,10 +61,16 @@ if (process.env.TESTENV_FLOW_URL !== undefined) {
   flow_url = process.env.TESTENV_FLOW_URL;
   console.log('Test Env Flow Url: ' + flow_url);
 }
+if (process.env.TESTENV_OWNER_UUID !== undefined) {
+  ownerUuid = process.env.TESTENV_OWNER_UUID;
+  console.log('Test Env Owner Uuid: ' + ownerUuid);
+}
 
 console.log('SmartObjectMgmt URL: ' + so_url);
 console.log('IntegrationDesignMgmt URL: ' + flow_url);
 console.log('Websocket Interface URL: ' + broker_url);
+console.log('Owner Uuid: ' + ownerUuid);
+
 let msb_url = broker_url;
 
 
@@ -1057,6 +1063,7 @@ function getFlowFromFile(msbClient){
     var flow = fs.readFileSync(__dirname + '/integration_flow.json')
       .toString()
       .replace(/%%%%FLOWNAME%%%%/gi, 'TestFlow-' + config.identity.uuid.substring(24, 36))
+      .replace(/%%%%OWNERUUID%%%%/gi, ownerUuid)
       .replace(/%%%%SOUUID1%%%%/gi, config.identity.uuid)
       .replace(/%%%%SONAME1%%%%/gi, config.identity.name)
       .replace(/%%%%SOUUID2%%%%/gi, config.identity.uuid)

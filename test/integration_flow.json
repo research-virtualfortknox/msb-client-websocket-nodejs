@@ -2,7 +2,7 @@
   "@id":1,
   "name": "%%%%FLOWNAME%%%%",
   "description": "",
-  "organisationId": "7c328ad1-cea5-410e-8dd8-6c7ca5a2e4f5",
+  "ownerUuid": "%%%%OWNERUUID%%%%",
   "transitions":[
     {
       "@id":1,

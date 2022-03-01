@@ -57,12 +57,20 @@ Set IP of MSB server and use standard ports:
 $ TESTENV_CUSTOMIP=192.168.0.10 npm run test:integration
 ```
 
-Or define urls for webscoket inteface, smart object management and flow management:
+Or define urls for websocket interface, smart object management and flow management:
 ```sh
 $ TESTENV_BROKER_URL=https://ws.15xr.msb.oss.cell.vfk.fraunhofer.de/ \
 TESTENV_SO_URL=https://so.15xr.msb.oss.cell.vfk.fraunhofer.de/ \
 TESTENV_FLOW_URL=https://flow.15xr.msb.oss.cell.vfk.fraunhofer.de/ \
 npm run test:integration
+```
+
+Or define urls and run integration test with powershell
+
+```cmd
+> $env:TESTENV_FLOW_URL="http://localhost:8100/vfk.msb.integration-design-mgmt.rest"
+> $env:TESTENV_OWNER_UUID="f10cfa25-58d4-41ba-8ecf-60ced3d60677"
+> npm run test:integration
 ```
 
 ## Integration Test
