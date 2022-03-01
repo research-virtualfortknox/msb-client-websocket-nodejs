@@ -1247,7 +1247,7 @@ function connect(my) {
           }
           // if ping-pong ok, prepare next one
           my.socket.isAlive = false;
-          my.socket.ping('', true, true);
+          my.socket.ping('', true);
         }, my.heartbeat_interval);
       }
     });
