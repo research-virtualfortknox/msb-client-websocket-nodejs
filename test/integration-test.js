@@ -165,7 +165,7 @@ describe('Integration Test - Basic Communication With MSB', function() {
       expect(test_published, 'Client could not send simple event to msb').to.equal(false);
     });
 
-  }).timeout(30000); ;
+  }).timeout(30000);
 
   it('should connect and register client via websocket interface', function(done) {
 
@@ -271,7 +271,7 @@ describe('Integration Test - Basic Communication With MSB', function() {
       expect(test_published, 'Client could not send simple event to msb').to.equal(true);
     });
 
-  }).timeout(30000); ;
+  }).timeout(30000);
 
   it('should send simple event (as event object) via websocket interface', function() {
 
@@ -299,7 +299,7 @@ describe('Integration Test - Basic Communication With MSB', function() {
       expect(test_published, 'Client could not send simple event to msb').to.equal(true);
     });
 
-  }).timeout(30000); ;
+  }).timeout(30000);
 
   it('should send simple event (as array) via websocket interface', function() {
 
@@ -319,7 +319,7 @@ describe('Integration Test - Basic Communication With MSB', function() {
       expect(test_published, 'Client could not send simple event to msb').to.equal(true);
     });
 
-  }).timeout(30000); ;
+  }).timeout(30000);
 
   it('should send simple event (with JSON stringyfied datatype) via websocket interface', function() {
 
@@ -339,7 +339,7 @@ describe('Integration Test - Basic Communication With MSB', function() {
       expect(test_published, 'Client could not send simple event to msb').to.equal(true);
     });
 
-  }).timeout(30000); ;
+  }).timeout(30000);
 
   it('should send simple event (with no payload) via websocket interface', function() {
 
@@ -359,7 +359,7 @@ describe('Integration Test - Basic Communication With MSB', function() {
       expect(test_published, 'Client could not send simple event to msb').to.equal(true);
     });
 
-  }).timeout(30000); ;
+  }).timeout(30000);
 
   it('should send complex event via websocket interface', function() {
 
@@ -426,7 +426,7 @@ describe('Integration Test - Basic Communication With MSB', function() {
     });
 
 
-  }).timeout(5000); ;
+  }).timeout(5000);
 
   it('should deploy flow via rest interface', function(done) {
 
@@ -800,7 +800,7 @@ describe('Integration Test - Basic Communication With MSB (heartbeat)', function
       expect(test_published, 'Client could not send simple event to msb').to.equal(true);
     });
 
-  }).timeout(30000); ;
+  }).timeout(30000);
 
 });
 

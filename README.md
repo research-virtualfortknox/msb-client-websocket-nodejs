@@ -6,7 +6,7 @@
 
 # MSB websocket client library for NodeJS
 
-[![Build Status](https://travis-ci.org/research-virtualfortknox/msb-client-websocket-nodejs.svg?branch=master)](https://travis-ci.org/research-virtualfortknox/msb-client-websocket-nodejs)
+[![Build Status](https://app.travis-ci.com/research-virtualfortknox/msb-client-websocket-nodejs.svg?branch=master)](https://app.travis-ci.com/research-virtualfortknox/msb-client-websocket-nodejs)
 [![npm version](https://badge.fury.io/js/%40vfk_research%2Fmsb-client-websocket-nodejs.svg)](https://badge.fury.io/js/%40vfk_research%2Fmsb-client-websocket-nodejs)
 [![Coverage Status](https://coveralls.io/repos/github/research-virtualfortknox/msb-client-websocket-nodejs/badge.svg?branch=feature-coveralls)](https://coveralls.io/github/research-virtualfortknox/msb-client-websocket-nodejs?branch=feature-coveralls)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fresearch-virtualfortknox%2Fmsb-client-websocket-nodejs.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fresearch-virtualfortknox%2Fmsb-client-websocket-nodejs?ref=badge_shield)
