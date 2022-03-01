@@ -68,7 +68,9 @@ npm run test:integration
 Or define urls and run integration test with powershell
 
 ```cmd
-> $env:TESTENV_FLOW_URL="http://localhost:8100/vfk.msb.integration-design-mgmt.rest"
+> $env:TESTENV_BROKER_URL="https://ws.15xr.msb.oss.cell.vfk.fraunhofer.de/"
+> $env:TESTENV_SO_URL="https://so.15xr.msb.oss.cell.vfk.fraunhofer.de/"
+> $env:TESTENV_FLOW_URL="https://flow.15xr.msb.oss.cell.vfk.fraunhofer.de/"
 > $env:TESTENV_OWNER_UUID="f10cfa25-58d4-41ba-8ecf-60ced3d60677"
 > npm run test:integration
 ```
