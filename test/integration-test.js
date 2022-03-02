@@ -6,7 +6,7 @@ var chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 var expect = chai.expect;
 const MsbClient = require('../src/msb_client');
-const uuidv4 = require('uuid/v4');
+const uuidGenerator = require('uuid');
 let fs = require('fs');
 const util = require('util');
 
@@ -464,7 +464,7 @@ describe('Integration Test - Basic Communication With MSB', function() {
     ];
     var priority = 2;
     var cached = true;
-    var correlationId = uuidv4();
+    var correlationId = uuidGenerator.v4();
 
     // 2. ACT
     var waitforForPublishedEventAndCallbackPromise = new Promise(function(resolve, reject) {
@@ -695,7 +695,7 @@ describe('Integration Test - Basic Communication With MSB (no SockJsFraming)', f
     ];
     var priority = 2;
     var cached = true;
-    var correlationId = uuidv4();
+    var correlationId = uuidGenerator.v4();
 
     // 2. ACT
     myMsbClient.disablesockJsFraming(true);
@@ -1113,7 +1113,7 @@ function getNewMsbClientSample(){
   test_published = false;
 
   var type = 'SmartObject';
-  var uuid = uuidv4();
+  var uuid = uuidGenerator.v4();
   var name = 'SO ' + uuid;
   var description = 'SO Desc' + uuid;
   var token = uuid.substring(0, 7);

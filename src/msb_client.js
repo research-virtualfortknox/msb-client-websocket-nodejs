@@ -16,7 +16,7 @@ const EventEmitter = require('events').EventEmitter;
 const _ = require('lodash');
 const fs = require('fs');
 const Ajv = require('ajv');
-const uuidv4 = require('uuid/v4');
+const uuidGenerator = require('uuid');
 
 // get the path to project root of the project requiring this node module
 const pathToProjectRoot = require('path');
@@ -1206,7 +1206,7 @@ function checkUrl(my, msb_url) {
     }
     if (my.sockJsFraming) {
       let server_id = Math.floor(Math.random() * 900) + 100; ;
-      let session_id = uuidv4().replace(/-/g, '');
+      let session_id = uuidGenerator.v4().replace(/-/g, '');
       config.msb_url_with_wspath = config.msb_url + '/websocket/data/' + server_id + '/' + session_id + '/websocket';
     } else {
       config.msb_url_with_wspath = config.msb_url + '/websocket/data/websocket';

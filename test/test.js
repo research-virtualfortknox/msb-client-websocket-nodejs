@@ -3,7 +3,7 @@
 
 var expect = require('chai').expect;
 const MsbClient = require('../src/msb_client');
-const uuidv4 = require('uuid/v4');
+const uuidGenerator = require('uuid');
 
 /**
  * Test basic client initializazion and client settings functions
@@ -40,7 +40,7 @@ describe('Basic Client Initialization', function() {
 
     // 1. ARRANGE
     var type = 'SmartObject';
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var name = 'SO ' + uuid;
     var description = 'SO Desc' + uuid;
     var token = uuid.substring(0, 7);
@@ -294,7 +294,7 @@ describe('MSB Client Specification - Functions', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var function_id = uuid.substring(0, 7);
 
     var function_name = 'FUNC ' + function_id;
@@ -334,7 +334,7 @@ describe('MSB Client Specification - Functions', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var function_id = uuid.substring(0, 7);
 
     var function_name = 'FUNC ' + function_id;
@@ -372,7 +372,7 @@ describe('MSB Client Specification - Functions', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var function_id = uuid.substring(0, 7);
 
     var function_name = 'FUNC ' + function_id;
@@ -413,7 +413,7 @@ describe('MSB Client Specification - Functions', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var function_id = uuid.substring(0, 7);
 
     var function_name = 'FUNC ' + function_id;
@@ -454,7 +454,7 @@ describe('MSB Client Specification - Functions', function() {
     var myMsbClient = new MsbClient();
 
     // create two events to be used as response events
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var event1_id = uuid.substring(0, 7);
 
     var event1_name = 'EVENT ' + event1_id;
@@ -474,7 +474,7 @@ describe('MSB Client Specification - Functions', function() {
 
     var event1_in_events_id = myMsbClient.events[event1_id]['@id'];
 
-    uuid = uuidv4();
+    uuid = uuidGenerator.v4();
     var event2_id = uuid.substring(0, 7);
 
     var event2_name = 'EVENT ' + event2_id;
@@ -495,7 +495,7 @@ describe('MSB Client Specification - Functions', function() {
     var event2_in_events_id = myMsbClient.events[event2_id]['@id'];
 
     // create function
-    uuid = uuidv4();
+    uuid = uuidGenerator.v4();
     var function_id = uuid.substring(0, 7);
 
     var function_name = 'FUNC ' + function_id;
@@ -538,7 +538,7 @@ describe('MSB Client Specification - Functions', function() {
     var myMsbClient = new MsbClient();
 
     // create two events to be used as response events
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var event1_id = uuid.substring(0, 7);
 
     var event1_name = 'EVENT ' + event1_id;
@@ -556,7 +556,7 @@ describe('MSB Client Specification - Functions', function() {
       event1_isArray
     );
 
-    uuid = uuidv4();
+    uuid = uuidGenerator.v4();
     var event2_id = uuid.substring(0, 7);
 
     var event2_name = 'EVENT ' + event2_id;
@@ -575,7 +575,7 @@ describe('MSB Client Specification - Functions', function() {
     );
 
     // create function
-    uuid = uuidv4();
+    uuid = uuidGenerator.v4();
     var function_id = uuid.substring(0, 7);
 
     var function_name = 'FUNC ' + function_id;
@@ -613,7 +613,7 @@ describe('MSB Client Specification - Functions', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var function_id = uuid.substring(0, 7);
 
     var function_name = 'FUNC ' + function_id;
@@ -660,7 +660,7 @@ describe('MSB Client Specification - Functions', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var function_id = uuid.substring(0, 7);
 
     var function_name = 'FUNC ' + function_id;
@@ -699,7 +699,7 @@ describe('MSB Client Specification - Functions', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var function_id = uuid.substring(0, 7);
 
     var function_name = 'FUNC ' + function_id;
@@ -767,7 +767,7 @@ describe('MSB Client Specification - Functions', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var function_id = uuid.substring(0, 7);
 
     var function_name = 'FUNC ' + function_id;
@@ -843,7 +843,7 @@ describe('MSB Client Specification - Events', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var event_id = uuid.substring(0, 7);
 
     var event_name = 'EVENT ' + event_id;
@@ -881,7 +881,7 @@ describe('MSB Client Specification - Events', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var event_id = uuid.substring(0, 7);
 
     var event_name = 'EVENT ' + event_id;
@@ -920,7 +920,7 @@ describe('MSB Client Specification - Events', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var event_id = uuid.substring(0, 7);
 
     var event_name = 'EVENT ' + event_id;
@@ -963,7 +963,7 @@ describe('MSB Client Specification - Events', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var event_id = uuid.substring(0, 7);
 
     var event_name = 'EVENT ' + event_id;
@@ -1002,7 +1002,7 @@ describe('MSB Client Specification - Events', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var event_id = uuid.substring(0, 7);
 
     var event_name = 'EVENT ' + event_id;
@@ -1040,7 +1040,7 @@ describe('MSB Client Specification - Events', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var event_id = uuid.substring(0, 7);
 
     var event_name = 'EVENT ' + event_id;
@@ -1085,7 +1085,7 @@ describe('MSB Client Specification - Events', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var event_id = uuid.substring(0, 7);
 
     var event_name = 'EVENT ' + event_id;
@@ -1121,7 +1121,7 @@ describe('MSB Client Specification - Events', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var event_id = uuid.substring(0, 7);
 
     var event_name = 'EVENT ' + event_id;
@@ -1189,7 +1189,7 @@ describe('MSB Client Specification - Events', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var event_id = uuid.substring(0, 7);
 
     var event_name = 'EVENT ' + event_id;
@@ -1244,7 +1244,7 @@ describe('MSB Client Specification - Events', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var event_id = uuid.substring(0, 7);
 
     var event_name = 'EVENT ' + event_id;
@@ -1312,7 +1312,7 @@ describe('MSB Client Specification - Events', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var event_id = uuid.substring(0, 7);
 
     var event_name = 'EVENT ' + event_id;
@@ -1409,7 +1409,7 @@ describe('MSB Client Specification - Events', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var event_id = uuid.substring(0, 7);
 
     var event_name = 'EVENT ' + event_id;
@@ -1525,7 +1525,7 @@ describe('MSB Client Specification - Self Description', function() {
 
     // 1. ARRANGE
     var type = 'SmartObject';
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var name = 'SO ' + uuid;
     var description = 'SO Desc' + uuid;
     var token = uuid.substring(0, 7);
@@ -1593,7 +1593,7 @@ describe('MSB Client Specification - Self Description', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var function_id = uuid.substring(0, 7);
 
     var function_name = 'FUNC ' + function_id;
@@ -1633,7 +1633,7 @@ describe('MSB Client Specification - Self Description', function() {
     // 1. ARRANGE
     var myMsbClient = new MsbClient();
 
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     var event_id = uuid.substring(0, 7);
 
     var event_name = 'EVENT ' + event_id;
@@ -1681,7 +1681,7 @@ describe('MSB Client - Event Value Validation', function() {
   beforeEach(function() {
     // runs before each test in this block
     // prepare client evwent;
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     event_id = uuid.substring(0, 7);
 
     event_name = 'EVENT ' + event_id;
@@ -2319,7 +2319,7 @@ describe('MSB Client - Event Caching', function() {
   beforeEach(function() {
     // runs before each test in this block
     // prepare client evwent;
-    var uuid = uuidv4();
+    var uuid = uuidGenerator.v4();
     event_id = uuid.substring(0, 7);
 
     event_name = 'EVENT ' + event_id;
