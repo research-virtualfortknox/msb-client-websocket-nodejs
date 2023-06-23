@@ -24,8 +24,7 @@ jobs:
     - name: Install Dependencies
       run: npm ci
     - name: Run tests
-      run: TESTENV_BROKER_URL=$TESTENV_BROKER_URL TESTENV_SO_URL=$TESTENV_SO_URL TESTENV_FLOW_URL=$TESTENV_FLOW_URL \
-        npm run test:all
+      run: TESTENV_BROKER_URL=$TESTENV_BROKER_URL TESTENV_SO_URL=$TESTENV_SO_URL TESTENV_FLOW_URL=$TESTENV_FLOW_URL npm run test:all
         
   build_1_6:
     environment: MSB_1.6
@@ -50,9 +49,7 @@ jobs:
     - name: Install Dependencies
       run: npm ci
     - name: Run tests
-      run: API_USERNAME=$API_USERNAME API_PASSWORD=$API_PASSWORD \
-        TESTENV_BROKER_URL=$TESTENV_BROKER_URL TESTENV_SO_URL=$TESTENV_SO_URL TESTENV_FLOW_URL=$TESTENV_FLOW_URL \
-        npm run test:all
+      run: API_USERNAME=$API_USERNAME API_PASSWORD=$API_PASSWORD TESTENV_BROKER_URL=$TESTENV_BROKER_URL TESTENV_SO_URL=$TESTENV_SO_URL TESTENV_FLOW_URL=$TESTENV_FLOW_URL npm run test:all
     - name: Send coverage to Coveralls
       if: success()
       run: npm run coverage:coveralls
