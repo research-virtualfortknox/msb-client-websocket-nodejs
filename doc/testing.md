@@ -102,7 +102,7 @@ $ TESTENV_CUSTOMIP=192.168.0.10 npm run coverage:integration
 Check `all test coverage`
 
 ```sh
-$ TESTENV_CUSTOMIP=192.168.0.10 npm run test:coverage-all
+$ TESTENV_CUSTOMIP=192.168.0.10 npm run coverage:all
 ```
 
 
