@@ -1,10 +1,6 @@
-name: Node.js CI
+name: Build
 
-on:
-  push:
-    tags:
-      - '*'  # This will trigger the workflow when you push a tag
-  pull_request:
+on: [push, pull_request]
 
 jobs:
   build_1_5:
