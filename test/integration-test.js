@@ -21,6 +21,10 @@ let test_published;
 // var to save last received message
 let message_received;
 
+// the msb api credentials
+let api_username = 'user';
+let api_password = 'password';
+
 // the msb urls to connect
 // url of websocket broker of msb
 let broker_url = 'ws://localhost:8085';
@@ -39,6 +43,13 @@ if (process.argv[5] !== undefined) {
   flow_url = process.argv[5];
 }
 
+// check for api credentials in process env
+if (process.env.API_USERNAME !== undefined) {
+  api_username = process.env.API_USERNAME;
+}
+if (process.env.API_PASSWORD !== undefined) {
+  api_password = process.env.API_PASSWORD;
+}
 // check if process env var was set with name TESTENV_CUSTOMIP to be added to msb urls
 if (process.env.TESTENV_CUSTOMIP !== undefined) {
   let testEnvCustomIp = process.env.TESTENV_CUSTOMIP;
@@ -814,6 +825,7 @@ let getVerificationToken = function(ownerUuid, msbClient) {
   return new Promise(function(resolve, reject) {
     chai.request(so_url)
       .post('/token/' + ownerUuid)
+      .auth(api_username, api_password)
       .set('content-type', 'application/json')
       .end(function(err, res) {
         expect(err).to.be.null;
@@ -879,6 +891,7 @@ let createFlow = function(flowstring) {
     chai.request(flow_url)
       .post('/integrationFlow/create')
       .set('content-type', 'application/json')
+      .auth(api_username, api_password)
       .send(flowstring)
       .end(function(err, res) {
         try {
@@ -903,6 +916,7 @@ let getFlow = function(flowId, deleted = false) {
   return new Promise(function(resolve, reject) {
     chai.request(flow_url)
       .get('/integrationFlow/' + flowId)
+      .auth(api_username, api_password)
       .set('content-type', 'application/json')
       .end(function(err, res) {
         try {
@@ -930,6 +944,7 @@ let deployFlow = function(flowId) {
   return new Promise(function(resolve, reject) {
     chai.request(flow_url)
       .put('/integrationFlow/' + flowId + '/deploy')
+      .auth(api_username, api_password)
       .set('content-type', 'application/json')
       .end(function(err, res) {
         try {
@@ -952,6 +967,7 @@ let undeployFlow = function(flowId) {
   return new Promise(function(resolve, reject) {
     chai.request(flow_url)
       .put('/integrationFlow/' + flowId + '/undeploy')
+      .auth(api_username, api_password)
       .set('content-type', 'application/json')
       .end(function(err, res) {
         try {
@@ -974,6 +990,7 @@ let deleteFlow = function(flowId) {
   return new Promise(function(resolve, reject) {
     chai.request(flow_url)
       .delete('/integrationFlow/' + flowId)
+      .auth(api_username, api_password)
       .end(function(err, res) {
         try {
           expect(err).to.be.null;
@@ -995,6 +1012,7 @@ let getSmartObject = function(soUUid, deleted = false) {
   return new Promise(function(resolve, reject) {
     chai.request(so_url)
       .get('/smartobject/' + soUUid)
+      .auth(api_username, api_password)
       .set('content-type', 'application/json')
       .end(function(err, res) {
         try {
@@ -1022,6 +1040,7 @@ let deleteSmartObject = function(soUuid) {
   return new Promise(function(resolve, reject) {
     chai.request(so_url)
       .delete('/smartobject/' + soUuid)
+      .auth(api_username, api_password)
       .end(function(err, res) {
         try {
           expect(err).to.be.null;
