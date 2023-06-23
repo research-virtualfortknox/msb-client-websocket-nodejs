@@ -19,9 +19,9 @@ First upgrade project to new version using
 npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch ]
 ```
 
-## Publish Version Of Library (travis)
+## Publish Version Of Library (Github Action)
 
-Travis CI will automatically publish the project to NPM registry if:
+Github Action CI will automatically publish the project to NPM registry if:
 * project version was updated using `npm version`
 * new version commited
 * git `TAG` has beed created for commit

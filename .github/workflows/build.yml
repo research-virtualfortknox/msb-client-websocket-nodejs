@@ -1,0 +1,67 @@
+name: Node.js CI
+
+on:
+  push:
+    tags:
+      - '*'  # This will trigger the workflow when you push a tag
+  pull_request:
+
+jobs:
+  build_1_5:
+    environment: MSB_1.5
+    runs-on: ubuntu-latest
+    env:
+      TESTENV_BROKER_URL: ${{ secrets.TESTENV_BROKER_URL }}
+      TESTENV_SO_URL: ${{ secrets.TESTENV_SO_URL }}
+      TESTENV_FLOW_URL: ${{ secrets.TESTENV_FLOW_URL }}
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [14]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: Install Dependencies
+      run: npm ci
+    - name: Run tests
+      run: TESTENV_BROKER_URL=$TESTENV_BROKER_URL TESTENV_SO_URL=$TESTENV_SO_URL TESTENV_FLOW_URL=$TESTENV_FLOW_URL \
+        npm run test:all
+        
+  build_1_6:
+    environment: MSB_1.6
+    runs-on: ubuntu-latest
+    env:
+      API_USERNAME: ${{ secrets.API_USERNAME }}
+      API_PASSWORD: ${{ secrets.API_PASSWORD }}
+      TESTENV_BROKER_URL: ${{ secrets.TESTENV_BROKER_URL }}
+      TESTENV_SO_URL: ${{ secrets.TESTENV_SO_URL }}
+      TESTENV_FLOW_URL: ${{ secrets.TESTENV_FLOW_URL }}
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [14]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: Install Dependencies
+      run: npm ci
+    - name: Run tests
+      run: API_USERNAME=$API_USERNAME API_PASSWORD=$API_PASSWORD \
+        TESTENV_BROKER_URL=$TESTENV_BROKER_URL TESTENV_SO_URL=$TESTENV_SO_URL TESTENV_FLOW_URL=$TESTENV_FLOW_URL \
+        npm run test:all
+    - name: Send coverage to Coveralls
+      if: success()
+      run: npm run coverage:coveralls
+    - name: Publish to NPM
+      if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+      run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
