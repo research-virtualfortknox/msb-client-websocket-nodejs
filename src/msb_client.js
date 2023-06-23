@@ -1258,7 +1258,8 @@ function connect(my) {
     });
 
     // on receiving messages from MSB
-    my.socket.on('message', function(data) {
+    my.socket.on('message', function(data, isBinary) {
+      data = isBinary ? data : data.toString();
       if (my.sockJsFraming) {
         // print out server-side heartbeat
         if (my.debug && data.startsWith('h')) {
@@ -1393,10 +1394,11 @@ function connect(my) {
     };
 
     // handle closed MSB connection errors
-    my.socket.on('close', function(err) {
+    my.socket.on('close', function(code, err) {
+      const reason = err.toString();
       my.connected = false;
       my.registered = false;
-      console.warn('CLOSE', err);
+      console.warn('CLOSE', reason);
       // perorm reconnection (if not canceled by user)
       if (my.autoReconnect & !my.userDisconnect) {
         my.reconnecting = true;
