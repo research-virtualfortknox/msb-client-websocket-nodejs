@@ -35,11 +35,11 @@
     "test": "npm run lint && npm run test:unit",
     "test:unit": "mocha test/test.js",
     "test:integration": "mocha test/integration-test.js",
-    "test:all": "npm run lint && nyc mocha",
+    "test:all": "npm run lint && nyc --reporter=text-lcov mocha",
     "coverage:unit": "nyc --reporter=text --check-coverage --lines 60 --per-file mocha test/test.js",
     "coverage:integration": "nyc --reporter=text --check-coverage --lines 60 --per-file mocha test/integration-test.js",
     "coverage:all": "nyc --reporter=text --check-coverage --lines 85 --per-file mocha",
-    "coverage:coveralls": "nyc report --reporter=text-lcov",
+    "coverage:coveralls": "nyc report --reporter=text-lcov | coveralls",
     "jsdoc": "./node_modules/.bin/jsdoc src/msb_client.js"
   },
   "gitHooks": {

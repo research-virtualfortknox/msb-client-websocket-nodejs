@@ -50,9 +50,6 @@ jobs:
       run: npm ci
     - name: Run tests
       run: API_USERNAME=$API_USERNAME API_PASSWORD=$API_PASSWORD TESTENV_BROKER_URL=$TESTENV_BROKER_URL TESTENV_SO_URL=$TESTENV_SO_URL TESTENV_FLOW_URL=$TESTENV_FLOW_URL npm run test:all
-    - name: Create Coverage Report
-      if: success()
-      run: npm run coverage:coveralls
     - name: Coveralls
       if: success()
       uses: coverallsapp/github-action@v2
