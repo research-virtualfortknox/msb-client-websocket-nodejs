@@ -39,7 +39,7 @@
     "coverage:unit": "nyc --reporter=text --check-coverage --lines 60 --per-file mocha test/test.js",
     "coverage:integration": "nyc --reporter=text --check-coverage --lines 60 --per-file mocha test/integration-test.js",
     "coverage:all": "nyc --reporter=text --check-coverage --lines 85 --per-file mocha",
-    "coverage:coveralls": "nyc report --reporter=text-lcov  > ./coverage/lcov.info",
+    "coverage:coveralls": "nyc report --reporter=text-lcov > coverage.lcov",
     "jsdoc": "./node_modules/.bin/jsdoc src/msb_client.js"
   },
   "gitHooks": {
