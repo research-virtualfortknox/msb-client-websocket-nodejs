@@ -58,7 +58,7 @@ jobs:
       if: success()
       uses: coverallsapp/github-action@v2
     - name: Publish to NPM
-      if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags') && matrix[node-version] == '16'
+      if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags') && matrix['node-version'] == '16'
       run: npm publish --access=public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
