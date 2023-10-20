@@ -1,6 +1,6 @@
 {
   "name": "@vfk_research/msb-client-websocket-nodejs",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "The NodeJs client library to connect to the Websocket Interface of the MSB (Manufacturing Service Bus) ",
   "author": "Daniel Stock",
   "license": "Apache-2.0",
