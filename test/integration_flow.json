@@ -83,12 +83,14 @@
                     "source": [
                       {
                         "path": "/dataObject",
-                        "type": "ARRAY"
+                        "type": "ARRAY",
+                        "items": {"type": "STRING"}
                       }
                     ],
                     "target": {
                       "path": "/a",
                       "type": "ARRAY",
+                      "items": {"type": "STRING"},
                       "template": "${/dataObject}"
                     }
                   }
