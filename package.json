@@ -13,7 +13,7 @@
     "access": "public"
   },
   "dependencies": {
-    "lodash": ">=4.17.21",
+    "lodash": ">=4.17.23",
     "ws": "^8.14.2",
     "uuid": "^9.0.1",
     "ajv": "^5.3.0"
